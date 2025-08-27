@@ -1,0 +1,15 @@
+# --- User Credentials for het.uz ---
+# Enter your login details for the Hududiy Elektr Tarmoqlari portal
+HET_USERNAME = "YOUR_HET_USERNAME"
+HET_PASSWORD = "YOUR_HET_PASSWORD"
+HET_URL = "https://cabinet.het.uz/"
+
+# --- Telegram Bot Details ---
+# 1. Create a bot by talking to @BotFather on Telegram to get your token.
+# 2. Talk to a bot like @userinfobot to get your personal chat ID.
+TELEGRAM_BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"
+TELEGRAM_CHAT_ID = "YOUR_TELEGRAM_CHAT_ID"
+
+# --- Data File ---
+# The name of the file where daily readings will be stored.
+CSV_FILE = 'data.csv'
