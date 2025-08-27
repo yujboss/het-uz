@@ -1,0 +1,12 @@
+# Ignore credentials
+config.py
+
+# Ignore Debian package files
+*.deb
+
+# Ignore other generated files
+chrome_profile/
+*.png
+*.csv
+venv/
+__pycache__/
