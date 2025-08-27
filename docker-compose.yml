@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  het-bot:
+    build: .
+    container_name: het-bot-container
+    restart: always
+    volumes:
+      - ./config.py:/app/config.py
+      - ./data.csv:/app/data.csv
+      - ./chrome_profile:/app/chrome_profile

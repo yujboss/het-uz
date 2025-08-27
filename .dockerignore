@@ -1,0 +1,18 @@
+# Git and Docker files
+.git/
+.gitignore
+Dockerfile
+.dockerignore
+
+# Python virtual environment and cache
+venv/
+__pycache__/
+*.pyc
+
+# Local data and configuration
+config.py
+data.csv
+*.png
+*.deb
+cron.log
+chrome_profile/

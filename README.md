@@ -6,71 +6,95 @@ This bot scrapes electricity consumption data from the "Hududiy Elektr Tarmoqlar
 
 ## ✨ Features
 
--   **Automated Scraping**: Logs in and fetches your latest electricity usage data automatically.
--   **Daily Reports**: Sends an automated report every day at a scheduled time (default is 12:00 PM).
--   **On-Demand Fetching**: Instantly get the latest reading with a simple `/get` command.
--   **Usage Graphs**: Visualize your consumption for the current month with the `/graph` command.
--   **Secure**: Keeps your credentials separate from the main codebase and out of version control.
+* **Automated Scraping**: Logs in and fetches your latest electricity usage data automatically.
 
-## 🚀 Setup and Installation
+* **Daily Reports**: Sends an automated report every day at a scheduled time (default is 12:00 PM).
 
-Follow these steps to get the bot up and running on your own server.
+* **On-Demand Fetching**: Instantly get the latest reading with a simple `/get` command.
 
-### 1. Clone the Repository
-First, clone this repository to your local machine or server:
-```bash
-git clone [https://github.com/yujboss/het-uz.git](https://github.com/yujboss/het-uz.git)
-cd het-uz
-```
+* **Usage Graphs**: Visualize your consumption for the current month with the `/graph` command.
 
-### 2. Install Dependencies
-It's recommended to use a Python virtual environment to keep your project's dependencies organized.
-```bash
-# Create and activate a virtual environment
-python3 -m venv venv
-source venv/bin/activate
+* **Secure**: Keeps your credentials separate from the main codebase and out of version control.
 
-# Install the required Python packages
-pip install -r requirements.txt
-```
-*(Note: A `requirements.txt` file is included in the repository. If you add new packages, you can update it by running `pip freeze > requirements.txt`.)*
+* **Dockerized**: Easy to deploy and run anywhere with Docker.
 
-### 3. Install Google Chrome
-The scraper uses **Selenium** to control a web browser. This script is configured to use Google Chrome, so it must be installed on the system where you run the bot.
+## 🚀 Setup and Deployment
 
-**Why is this needed?** Selenium automates a real browser to log in and navigate the website just like a human would. The script runs Chrome in "headless mode," meaning it does all its work in the background without needing a graphical display, which is perfect for servers.
+This project is designed to be run with Docker and Docker Compose, which is the recommended method.
 
-To install it on a Debian/Ubuntu system, run the following commands:
-```bash
-# Download the installer
-wget [https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb](https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb)
+### Docker Setup (Recommended)
 
-# Install the package and any missing dependencies
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-sudo apt-get install -f
-```
+This is the simplest and most reliable way to run the bot. It packages the application and all its dependencies into a single container.
 
-### 4. Configure the Bot
-All configuration is handled in the `config.py` file. A template is provided to make this easy.
+**Prerequisites:**
 
-1.  **Rename the example file:**
-    ```bash
-    mv config.py.example config.py
-    ```
-2.  **Edit `config.py`** with a text editor (like `nano` or `vim`) and fill in your details:
-    -   `HET_USERNAME` & `HET_PASSWORD`: Your login credentials for the het.uz portal.
-    -   `TELEGRAM_BOT_TOKEN`: Your unique token from Telegram's BotFather.
-    -   `TELEGRAM_CHAT_ID`: Your personal chat ID, so the bot knows where to send messages.
+* [Docker](https://docs.docker.com/get-docker/) installed.
 
-## ▶️ Running the Bot
-Once everything is configured, you can start the bot with this command:
-```bash
-python3 bot.py
-```
-The bot will now run continuously, listening for commands and sending scheduled reports. For long-term use, it's recommended to run this process in the background using a tool like `screen` or `tmux` to ensure it stays active even after you disconnect from the server.
+* [Docker Compose](https://docs.docker.com/compose/install/) installed.
+
+**Steps:**
+
+1. **Clone the Repository:**
+   ```bash
+   git clone [https://github.com/yujboss/het-uz.git](https://github.com/yujboss/het-uz.git)
+   cd het-uz
+   ```
+
+2. **Create Your Configuration File:**
+   Rename the example config file and fill in your credentials.
+   ```bash
+   mv config.py.example config.py
+   ```
+   Now, edit `config.py` with your details (`HET_USERNAME`, `HET_PASSWORD`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`).
+
+3. **Build and Run the Bot:**
+   Use Docker Compose to build the image and start the container in the background.
+   ```bash
+   docker-compose up --build -d
+   ```
+   Your bot is now running!
+
+**Managing the Bot with Docker:**
+
+* **View Logs:** `docker-compose logs -f`
+
+* **Stop the Bot:** `docker-compose down`
+
+* **Start the Bot:** `docker-compose up -d`
+
+### Manual Setup (Legacy)
+
+This method is for running the bot directly on a machine without Docker.
+
+1. **Install Dependencies:**
+   It's recommended to use a Python virtual environment.
+   ```bash
+   # Create and activate a virtual environment
+   python3 -m venv venv
+   source venv/bin/activate
+   
+   # Install the required Python packages
+   pip install -r requirements.txt
+   ```
+
+2. **Install Google Chrome:**
+   The scraper uses Selenium to control a web browser. For Debian/Ubuntu systems:
+   ```bash
+   wget [https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb](https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb)
+   sudo dpkg -i google-chrome-stable_current_amd64.deb
+   sudo apt-get install -f
+   ```
+
+3. **Configure and Run:**
+   Follow Step 2 from the Docker setup to create and edit your `config.py` file. Then, run the bot:
+   ```bash
+   python3 bot.py
+   ```
 
 ## 🤖 Bot Commands
 
--   `/start` - Displays a welcome message and confirms the bot is running.
--   `/get` - Fetches and displays the current electricity reading instantly.
--   `/graph` - Generates and sends a graph of the current month's usage.
+* `/start` - Displays a welcome message and confirms the bot is running.
+
+* `/get` - Fetches and displays the current electricity reading instantly.
+
+* `/graph` - Generates and sends a graph of the current month's usage.
